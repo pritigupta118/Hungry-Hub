@@ -1,8 +1,20 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { formValidation } from '../utility/validation'
 
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true) // true means login, false means sign up
+const email = useRef(null)
+const password = useRef(null)
+
+const [errorMessage, setErrorMessage] = useState(null)
+
+  const handleButtonClick = () => {
+    // form validation
+    const message = formValidation(email?.current?.value, password?.current?.value)
+    setErrorMessage(message)
+    console.log(message)
+  }
 const toggleLoginButton = () =>{
 setIsLogin(!isLogin);
 }
@@ -10,7 +22,7 @@ setIsLogin(!isLogin);
   return (
     <div className='w-full h-screen flex justify-center items-center bg-[#E6E6FA]'>
 
-  <form className='bg-white flex flex-col gap-4 w-full sm:w-8/12 md:w-5/12 p-4 sm:p-12'>
+  <form onSubmit={(e) => {e.preventDefault()}} className='bg-white flex flex-col gap-4 w-full sm:w-8/12 md:w-5/12 p-4 sm:p-10'>
 
   <div className='flex justify-between'>
     <div className='flex flex-col gap-4'> 
@@ -22,10 +34,11 @@ setIsLogin(!isLogin);
   </div>
   </div>
   
-{!isLogin && <input type="text" placeholder="Full Name" className='p-4 rounded bg-[#131313]'/>}
- <input type="text" placeholder="Email address" className='p-4 rounded bg-[#131313]'/>
- <input type="password" placeholder="Password" className='p-4 rounded bg-[#131313]'/>
-    <button className='w-full bg-[#fc8019] p-3 rounded text-white font-bold'>{isLogin ? "LOGIN" : "SIGN UP"}</button>
+{!isLogin && <input type="text" placeholder="Full Name" className='p-4 rounded bg-[#131313] text-white'/>}
+<input ref={email} type="text" placeholder="Email address" className='p-4 rounded bg-[#131313] text-white'/>
+ <input ref={password} type="password" placeholder="Password" className='p-4 rounded bg-[#131313] text-white'/>
+ <p className='text-red-500 font-semibold text-center'>{errorMessage}</p>
+    <button className='w-full bg-[#fc8019] p-3 rounded text-white font-bold' onClick={handleButtonClick}>{isLogin ? "LOGIN" : "SIGN UP"}</button>
     <p className='text-sm'>By clicking on Login, I accept the <span className='font-semibold'>Terms & Conditions & Privacy Policy</span></p>
   </form>
     </div>
