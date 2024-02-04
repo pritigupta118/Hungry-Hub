@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { formValidation } from '../utility/validation'
-
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../utility/firebase';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true) // true means login, false means sign up
@@ -11,9 +12,36 @@ const [errorMessage, setErrorMessage] = useState(null)
 
   const handleButtonClick = () => {
     // form validation
-    const message = formValidation(email?.current?.value, password?.current?.value)
+   const message =formValidation(email?.current?.value, password?.current?.value)
     setErrorMessage(message)
-    console.log(message)
+    if(message) return;
+
+    if(!isLogin){
+      createUserWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage(errorCode  + ": " + errorMessage);
+  });
+    }
+    else{
+      signInWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+   console.log(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage(errorCode  + ": " + errorMessage);
+  });
+    }
   }
 const toggleLoginButton = () =>{
 setIsLogin(!isLogin);
@@ -22,7 +50,7 @@ setIsLogin(!isLogin);
   return (
     <div className='w-full h-screen flex justify-center items-center bg-[#E6E6FA]'>
 
-  <form onSubmit={(e) => {e.preventDefault()}} className='bg-white flex flex-col gap-4 w-full sm:w-8/12 md:w-5/12 p-4 sm:p-10'>
+  <form onSubmit={(e) => {e.preventDefault()}} className='bg-white flex flex-col gap-4 w-full sm:w-8/12 md:w-5/12 p-4 sm:p-8 md:p-12'>
 
   <div className='flex justify-between'>
     <div className='flex flex-col gap-4'> 
