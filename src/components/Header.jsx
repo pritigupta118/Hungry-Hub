@@ -1,12 +1,22 @@
 import React, { useState } from 'react'
 import { FaHamburger, FaTimes } from "react-icons/fa";
-
+import { signOut } from "firebase/auth";
+import { auth } from '../utility/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-
+const navigate = useNavigate()
 const [nav, setNav] = useState(false)
 const toggleMenu = () =>{
   setNav(!nav)
+}
+
+const handleSignOutClick = () =>{
+signOut(auth).then(() => {
+ navigate("/")
+}).catch((error) => {
+  navigate("/error")
+});
 }
 
 
@@ -22,7 +32,7 @@ const toggleMenu = () =>{
           <li>Offers</li>
           <li>Help</li>
           <li>Cart</li>
-         <button className='text-lg font-semibold bg-red-600 p-2 text-white rounded'>Sign Out</button>
+         <button className='text-lg font-semibold bg-red-600 p-2 text-white rounded' onClick={handleSignOutClick}>Sign Out</button>
         </nav>
 
         <div onClick={toggleMenu} className='md:hidden z-10'>
@@ -32,7 +42,7 @@ const toggleMenu = () =>{
         <li className='py-6 text-xl'>Home</li>
           <li className='py-6 text-xl'>Offers</li>
           <li className='py-6 text-xl'>Cart</li>
-          <li className='py-6 text-xl'><div className='bg-red-600 p-2 rounded-lg'>Sign Out</div></li>
+          <li className='py-6 text-xl' onClick={handleSignOutClick}><div className='bg-red-600 p-2 rounded-lg'>Sign Out</div></li>
         </nav>
     
     </div>

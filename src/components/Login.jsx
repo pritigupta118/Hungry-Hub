@@ -2,11 +2,13 @@ import React, { useRef, useState } from 'react'
 import { formValidation } from '../utility/validation'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utility/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true) // true means login, false means sign up
 const email = useRef(null)
 const password = useRef(null)
+const navigate = useNavigate();
 
 const [errorMessage, setErrorMessage] = useState(null)
 
@@ -22,6 +24,7 @@ const [errorMessage, setErrorMessage] = useState(null)
     // Signed up 
     const user = userCredential.user;
     console.log(user)
+    navigate("/browse")
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -35,6 +38,7 @@ const [errorMessage, setErrorMessage] = useState(null)
     // Signed in 
     const user = userCredential.user;
    console.log(user)
+   navigate("/browse")
   })
   .catch((error) => {
     const errorCode = error.code;
