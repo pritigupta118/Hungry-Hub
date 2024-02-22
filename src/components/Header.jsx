@@ -3,6 +3,7 @@ import { FaHamburger, FaTimes } from "react-icons/fa";
 import { signOut } from "firebase/auth";
 import { auth } from '../utility/firebase';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 const navigate = useNavigate()
@@ -28,10 +29,10 @@ signOut(auth).then(() => {
       </div>
      
         <nav className='hidden md:flex justify-center items-center'>
-        <li>Home</li>
-          <li>Offers</li>
-          <li>Help</li>
-          <li>Cart</li>
+        <li><Link to="/browse">Home</Link></li>
+          <li><Link to="/browse/offer">Offers</Link></li>
+          <li><Link to="/browse/help">Help</Link></li>
+          <li><Link to="/browse/cart">Cart</Link></li>
          <button className='text-lg font-semibold bg-red-600 p-2 text-white rounded' onClick={handleSignOutClick}>Sign Out</button>
         </nav>
 

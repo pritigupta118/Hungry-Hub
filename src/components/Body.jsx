@@ -6,6 +6,12 @@ import Login from "./Login"
 import Browse from './Browse'
 import { useDispatch } from 'react-redux'
 import { addUser, removeUser } from '../utility/userSlice'
+import Offer from './Offer';
+import Help from './Help';
+import Restaurents from './Restaurents';
+import Cart from './Cart';
+import ResContainer from './ResContainer';
+import Restaurentmenu from './Restaurentmenu';
 
 const Body = () => {
   const dispatch = useDispatch()
@@ -16,7 +22,29 @@ const Body = () => {
     },
     {
       path: "/browse",
-      element: <Browse/>
+      element: <Browse/>,
+      children : [
+        {
+          path: "/browse",
+          element: <Restaurents/>
+        },
+        {
+          path: "/browse/offer",
+          element: <Offer/>,
+        },
+        {
+          path: "/browse/help",
+          element: <Help/>,
+        },
+        {
+          path: "/browse/cart",
+          element: <Cart/>,
+        },
+        {
+          path: "/browse/restaurent/:resId",
+          element: <Restaurentmenu/>,
+        },
+      ]
     }
   ])
 
