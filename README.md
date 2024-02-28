@@ -10,3 +10,6 @@ Currently, two official plugins are available:
 # what is the need of State Variable? 
 
  - when ever the API will fetch the data, the data will be put into the sate variable. when ever the sate variable updates it automaticalyy updates my UI.
+
+
+ 2:14 => Finding out the paths => making the error pages
