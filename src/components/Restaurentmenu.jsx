@@ -10,22 +10,24 @@ const restaurentInfo = useRestaurentInfo(resId);
 
 if(restaurentInfo === null)  return <p>Loading🤔🤔.....</p>
 
-const {name, cuisines, areaName, 
-  costForTwoMessage} = restaurentInfo?.data?.cards[2]?.card?.card?.info
-console.log(restaurentInfo?.data?.cards[2]?.card?.card?.info);
-const {itemCards} = restaurentInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+// const {name, cuisines, areaName, 
+//   costForTwoMessage} = restaurentInfo?.data?.cards[0]?.card?.card?.info
 
-const categories = restaurentInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
 
-console.log(categories);
+// 
+// const {itemCards} = restaurentInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+
+const categories = restaurentInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+
+
   return (
     <div className='flex flex-col justify-center items-center py-6'>
    <div className='mb-4'>
-   <h1 className='text-2xl font-bold mb-3'>{name}</h1>
-      <h2 className='text-gray-500 text-sm'>{cuisines.join(", ")}</h2>
-      <h2 className='text-gray-500 text-sm'>{areaName}</h2>
+   <h1 className='text-2xl font-bold mb-3'>{restaurentInfo?.data?.cards[0]?.card?.card?.info?.name}</h1>
+      <h2 className='text-gray-500 text-sm'>{restaurentInfo?.data?.cards[0]?.card?.card?.info?.cuisines.join(", ")}</h2>
+      <h2 className='text-gray-500 text-sm'>{restaurentInfo?.data?.cards[0]?.card?.card?.info?.areaName}</h2>
       <p className='flex text-gray-500 text-xs md:text-sm my-3'><img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_18,h_18/v1648635511/Delivery_fee_new_cjxumu" alt="" />Order above 149 for discounted delivery fee</p>
-      <p className='font-bold'>{costForTwoMessage}</p>
+      <p className='font-bold'>{restaurentInfo?.data?.cards[0]?.card?.card?.info?.costForTwoMessage}</p>
    </div>
     {categories.map((c, index) => (<Accodium key={c?.card?.card?.title} data={c?.card?.card} />))}
    

@@ -1,9 +1,10 @@
 import React from 'react'
+import Offer from './Offer'
 
 const Help = () => {
   return (
     <div>
-      How can I help you
+      <Offer/>
     </div>
   )
 }
