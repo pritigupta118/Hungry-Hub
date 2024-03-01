@@ -32,20 +32,21 @@ signOut(auth).then(() => {
      
         <nav className='hidden md:flex justify-center items-center'>
         <li className='hover:text-orange-500'><Link to="/browse">Home</Link></li>
-          <li><Link to="/browse/offer">Offers</Link></li>
-          <li><Link to="/browse/help">Help</Link></li>
-          <li><Link to="/browse/cart"><span className='rounded p-1 bg-green-600 text-white text-sm'>{cartItems.length}</span> Cart</Link></li>
-         <button className='text-lg font-semibold bg-red-600 p-2 text-white rounded' onClick={handleSignOutClick}>Sign Out</button>
+          <li className='hover:text-orange-500'><Link to="/browse/offer">Offers</Link></li>
+          <li className='hover:text-orange-500'><Link to="/browse/help">Help</Link></li>
+          <li className='hover:text-orange-500'><Link to="/browse/cart"><span className='rounded p-1 bg-green-600 text-white text-sm'>{cartItems.length}</span> Cart</Link></li>
+         <button className='text-lg font-semibold bg-red-600 p-2 text-white rounded hover:bg-red-500' onClick={handleSignOutClick}>Sign Out</button>
         </nav>
 
         <div onClick={toggleMenu} className='md:hidden z-10'>
         {!nav ? <FaHamburger size={25}/> : <FaTimes size={25} className='text-white'/>}
         </div>
  <nav className={!nav ? 'hidden' : "absolute top-0 left-[50%] w-1/2 h-screen bg-[#131313] flex flex-col justify-center items-center text-white"}>
-        <li className='py-6 text-xl'>Home</li>
-          <li className='py-6 text-xl'>Offers</li>
-          <li className='py-6 text-xl'><span className='rounded p-1 bg-green-600 text-white '>{cartItems.length}</span> Cart</li>
-          <li className='py-6 text-xl' onClick={handleSignOutClick}><div className='bg-red-600 p-2 rounded-lg'>Sign Out</div></li>
+        <li className='py-6 text-xl hover:text-orange-500'><Link to="/browse">Home</Link></li>
+          <li className='py-6 text-xl hover:text-orange-500'><Link to="/browse/offer">Offers</Link></li>
+          <li className='py-6 text-xl hover:text-orange-500'><Link to="/browse/help">Help</Link></li>
+          <li className='py-6 text-xl hover:text-orange-500'><Link to="/browse/cart"><span className='rounded p-1 bg-green-600 text-white '>{cartItems.length}</span> Cart</Link></li>
+          <li className='py-6 text-xl cursor-pointer' onClick={handleSignOutClick}><div className='bg-red-600 p-2 rounded-lg hover:bg-red-500'>Sign Out</div></li>
         </nav>
     
     </div>

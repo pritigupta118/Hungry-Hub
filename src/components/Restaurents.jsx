@@ -27,12 +27,12 @@ if(listOfRes.length ===0 ) return <p>Loading...</p>;
   return (
     // <div className='flex justify-center align-middle items-center'>
     <div className='w-9/12 m-auto flex flex-col justify-center items-center'>
-    <div className='flex justify-between w-full my-4 items-center'>
-    <div>
+    <div className='flex flex-col  sm:flex-row justify-start sm:justify-between w-full my-4 items-center'>
+    <div className='flex flex-row'>
       <input className='bg-gray-200 md:p-2 rounded' type="text" value={searchText} onChange={(e) => {
         setSearchText(e.target.value)
       }}/>
-      <button className='bg-orange-400 p-2 ml-2 rounded text-gray-700 font-semibold' onClick={() => {
+      <button className='bg-orange-400 p-[3px] sm:p-2 ml-[2px] sm:ml-2 rounded text-gray-700 font-semibold' onClick={() => {
      
 
         const filteredRes = listOfRes.filter((res) => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
@@ -41,7 +41,7 @@ if(listOfRes.length ===0 ) return <p>Loading...</p>;
       }}>Search</button>
     </div>
     
-      <button className='bg-orange-400 p-3 rounded text-gray-700 font-semibold' onClick={() =>{
+      <button className='bg-orange-400 p-[8px] sm:p-3 mt-2 sm:mt-0 rounded text-gray-700 font-semibold' onClick={() =>{
         const topRatedRes = filteredRestaurent.filter((res) => res?.info?.avgRating >= 4)
         setFilteredRestaurent(topRatedRes)
       }}>Top Rated Restaurent</button>
