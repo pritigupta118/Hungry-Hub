@@ -1,7 +1,6 @@
 import React from 'react'
 import { RES_LOGO } from '../utility/constants'
-import { useDispatch } from 'react-redux'
-import { removeItems } from '../utility/cartSlice'
+
 
 const CartItems = ({items}) => {
 
