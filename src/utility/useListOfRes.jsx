@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { RES_API } from './constants';
+
 
 const useListOfRes = () => {
   const [listOfRes, setListOfRes] = useState([]);
@@ -7,7 +9,7 @@ const useListOfRes = () => {
     },[])
     
     const fetchData = async () => {
-      const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.5200566&lng=88.73977719999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+      const data = await fetch(RES_API)
     
       const json = await data.json()
      

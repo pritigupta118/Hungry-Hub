@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ResContainer from './ResContainer'
 import { Link } from 'react-router-dom';
 import useListOfRes from '../utility/useListOfRes';
+import { RES_API } from '../utility/constants';
 
 
 const Restaurents = () => {
@@ -13,7 +14,7 @@ const Restaurents = () => {
     },[])
 
     const fetchData = async () => {
-      const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.5200566&lng=88.73977719999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+      const data = await fetch(RES_API)
     
       const json = await data.json()
      console.log(json);
